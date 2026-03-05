@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./css/dashboard.css" />
+  </head>
+  <body>
+    <h2 id="welcome"></h2>
+
+    <button onclick="logout()">Logout</button>
+
+    <h3>Students</h3>
+    <input id="name" placeholder="name" />
+    <input id="grade" placeholder="grade" />
+    <input id="email" placeholder="email" />
+    <input id="class" placeholder="class" />
+    <input id="gpa" placeholder="gpa" />
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <div>
+      <h3>Student List</h3>
+      <div id="studentList"></div>
+    </div>
+    <script src="./js/api.js"></script>
+    <script src="./js/student.js"></script>
+    <script src="./js/ui.js"></script>
+  </body>
+</html>

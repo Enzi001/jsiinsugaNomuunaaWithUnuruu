@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="./css/roles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <span>Dashboard</span>
+          <span class="badge">STUDENT</span>
+        </div>
+        <div class="nav-right">
+          <span class="pill" id="studentEmail">...</span>
+          <button class="btn danger" onclick="logout()">Logout</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>My Profile</h2>
+          <div class="muted">
+            Эндээс login хийсэн хэрэглэгчийн мэдээлэл харагдана.
+          </div>
+
+          <div style="margin-top: 12px; display: grid; gap: 10px">
+            <div
+              class="box"
+              style="
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.12);
+              "
+            >
+              <div class="lbl muted">Email</div>
+              <div id="pEmail" style="font-weight: 700"></div>
+            </div>
+
+            <div
+              class="box"
+              style="
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.12);
+              "
+            >
+              <div class="lbl muted">Role</div>
+              <div id="pRole" style="font-weight: 700"></div>
+            </div>
+
+            <div
+              class="box"
+              style="
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.12);
+              "
+            >
+              <div class="lbl muted">User ID</div>
+              <div id="pId" style="font-weight: 700"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Student Panel</h2>
+          <div class="muted">
+            Энд дараа нь: даалгавар, хичээлийн жагсаалт, оноо гэх мэт UI нэмэж
+            болно.
+          </div>
+
+          <div style="margin-top: 12px" class="kpi">
+            <div class="box">
+              <div class="num">0</div>
+              <div class="lbl">My tasks</div>
+            </div>
+            <div class="box">
+              <div class="num">0</div>
+              <div class="lbl">My score</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>My Todos</h2>
+          <div id="myTodoList"></div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/api.js"></script>
+    <script src="./js/student.js"></script>
+    <script>
+      // ✅ Role protection
+      const currentUser = JSON.parse(localStorage.getItem("user"));
+      if (!currentUser || currentUser.role !== "student") {
+        alert("Access denied");
+        window.location.href = "index.html";
+      }
+
+      document.getElementById("studentEmail").textContent = currentUser.email;
+      document.getElementById("pEmail").textContent = currentUser.email;
+      document.getElementById("pRole").textContent = currentUser.role;
+      document.getElementById("pId").textContent = currentUser.id;
+
+      function logout() {
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
+      }
+      function buildNavbar(user) {
+        const roleBadge = document.getElementById("roleBadge");
+        const navLinks = document.getElementById("navLinks");
+        const userEmail = document.getElementById("userEmail");
+
+        roleBadge.textContent = user.role.toUpperCase();
+        userEmail.textContent = user.email;
+
+        // role-оор menu өөр
+        const linksByRole = {
+          admin: [
+            { label: "Students", href: "admin.html" },
+            { label: "Users", href: "admin-users.html" }, // дараа нь нэмэж болно
+            { label: "Reports", href: "admin-reports.html" }, // дараа нь нэмэж болно
+          ],
+          student: [
+            { label: "Profile", href: "student.html" },
+            { label: "Tasks", href: "student-tasks.html" }, // дараа нь нэмэж болно
+            { label: "Scores", href: "student-scores.html" }, // дараа нь нэмэж болно
+          ],
+        };
+
+        const links = linksByRole[user.role] || [];
+
+        // одоогийн page active болгох
+        const currentPage = location.pathname.split("/").pop();
+
+        navLinks.innerHTML = links
+          .map((l) => {
+            const active = l.href === currentPage ? "active" : "";
+            return `<a class="nav-link ${active}" href="${l.href}">${l.label}</a>`;
+          })
+          .join("");
+      }
+    </script>
+  </body>
+</html>

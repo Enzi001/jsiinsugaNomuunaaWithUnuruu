@@ -1,0 +1,125 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "enzi",
+      "email": "admin@gmail.com",
+      "password": "password123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "nomuunaa",
+      "email": "nomuunaa@gmail.com",
+      "password": "123",
+      "role": "student"
+    }
+  ],
+  "students": [
+    {
+      "id": "1",
+      "name": "nomuunaa",
+      "email": "nomuunaa@gmail.com",
+      "grade": "11",
+      "class": "A",
+      "gpa": 2.8
+    },
+    {
+      "id": "2",
+      "name": "unuruu",
+      "email": "unuruu@gmail.com",
+      "grade": "11",
+      "class": "B",
+      "gpa": 2.2
+    },
+    {
+      "id": "3",
+      "grade": "12",
+      "gpa": 4,
+      "email": "enkhzinbataa@gmail.com"
+    },
+    {
+      "name": "enzi",
+      "age": 0,
+      "id": "4"
+    },
+    {
+      "id": "5",
+      "name": "bold",
+      "age": 16
+    },
+    {
+      "id": "6",
+      "name": "unuruu2",
+      "age": 25
+    }
+  ],
+  "todos": [
+    {
+      "id": "1",
+      "title": "HTML Form хийх",
+      "description": "Login form + validation хий",
+      "deadline": "2026-03-10",
+      "createdAt": "2026-03-03",
+      "createdBy": 1
+    },
+    {
+      "id": "2",
+      "title": "hicheel!23",
+      "description": "dawdasda",
+      "deadline": "123123-04-05",
+      "createdAt": "2026-03-03",
+      "createdBy": 1
+    },
+    {
+      "id": "3",
+      "title": "hicheel!23",
+      "description": "adsasdadsasddawdawdawd",
+      "deadline": "24252-11-11",
+      "createdAt": "2026-03-03",
+      "createdBy": 1
+    },
+    {
+      "id": "4",
+      "title": "hicheel!23dasdasd",
+      "description": "3123123123123123123",
+      "deadline": "23123-12-31",
+      "createdAt": "2026-03-03",
+      "createdBy": 1
+    },
+    {
+      "id": "e4a9",
+      "title": "unuruuug sereeh",
+      "description": "sereeh",
+      "deadline": "2026-03-20",
+      "createdAt": "2026-03-03",
+      "createdBy": 1
+    }
+  ],
+  "assignments": [
+    {
+      "id": "1",
+      "todoId": 1,
+      "studentId": 1,
+      "status": "assigned",
+      "doneAt": null,
+      "comment": ""
+    },
+    {
+      "id": "f3a4",
+      "todoId": "e4a9",
+      "studentId": "1",
+      "status": "done",
+      "doneAt": "2026-03-03T09:41:57.820Z",
+      "comment": "us tsatsaj sereeh gesen bolovch sersengue shulsee ashiglasanaa"
+    },
+    {
+      "id": "35ed",
+      "todoId": "e4a9",
+      "studentId": "5",
+      "status": "assigned",
+      "doneAt": null,
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="./css/roles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <span>Dashboard</span>
+          <span class="badge" id="roleBadge">ROLE</span>
+        </div>
+
+        <div class="nav-right">
+          <nav class="nav-links" id="navLinks"></nav>
+
+          <span class="pill" id="userEmail">...</span>
+          <button class="btn danger" onclick="logout()">Logout</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Students CRUD</h2>
+          <div class="muted">
+            json-server: <span class="pill">/students</span>
+          </div>
+
+          <div
+            class="toolbar"
+            style="display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0"
+          >
+            <input
+              class="input"
+              id="q"
+              placeholder="Search by name..."
+              style="width: 220px"
+            />
+
+            <select class="input" id="ageFilter" style="max-width: 180px">
+              <option value="all">All ages</option>
+              <option value="lt10">Age &lt; 10</option>
+              <option value="10to15">Age 10–15</option>
+              <option value="gt15">Age &gt; 15</option>
+            </select>
+
+            <select class="input" id="sortBy" style="max-width: 200px">
+              <option value="id_desc">Sort: ID (newest)</option>
+              <option value="id_asc">Sort: ID (oldest)</option>
+              <option value="name_asc">Sort: Name A→Z</option>
+              <option value="name_desc">Sort: Name Z→A</option>
+              <option value="age_asc">Sort: Age low→high</option>
+              <option value="age_desc">Sort: Age high→low</option>
+            </select>
+
+            <button class="btn secondary" id="resetBtn" type="button">
+              Reset
+            </button>
+          </div>
+          <form class="form" id="studentForm">
+            <input class="input" id="name" placeholder="Student name" />
+            <input class="input" id="age" type="number" placeholder="Age" />
+            <button class="btn" type="submit">Add Student</button>
+          </form>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          <!-- ✅ Pagination info -->
+          <div class="muted" id="pageInfo" style="margin-top: 10px">
+            Showing 0–0 of 0
+          </div>
+
+          <!-- ✅ Pagination controls -->
+          <div
+            id="pagination"
+            style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px"
+          ></div>
+        </div>
+
+        <div class="card">
+          <h2>Admin Summary</h2>
+          <div class="muted">Энд KPI, хяналтын мэдээлэл байрлуулж болно.</div>
+
+          <div class="kpi">
+            <div class="box">
+              <div class="num" id="kpiTotal">0</div>
+              <div class="lbl">Total students</div>
+            </div>
+            <div class="box">
+              <div class="num" id="kpiAvgAge">0</div>
+              <div class="lbl">Average age</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 12px" class="muted">
+            Tip: Admin page-д зөвхөн admin role орж чадна.
+          </div>
+        </div>
+        <div class="card">
+          <h2>Todo / Tasks</h2>
+          <div class="muted">
+            json-server: <span class="pill">/todos</span> +
+            <span class="pill">/assignments</span>
+          </div>
+
+          <!-- ✅ Create Todo -->
+          <form class="form" id="todoForm" style="margin-top: 12px">
+            <input
+              class="input"
+              id="todoTitle"
+              placeholder="Todo title"
+              required
+            />
+            <input class="input" id="todoDeadline" type="date" />
+            <textarea
+              class="input"
+              id="todoDesc"
+              placeholder="Description"
+              style="min-height: 90px"
+            ></textarea>
+
+            <button class="btn" type="submit">Create Todo</button>
+          </form>
+
+          <hr style="margin: 14px 0; opacity: 0.2" />
+
+          <!-- ✅ Assign -->
+          <div
+            class="toolbar"
+            style="display: flex; gap: 10px; flex-wrap: wrap"
+          >
+            <select
+              class="input"
+              id="todoSelect"
+              style="min-width: 220px"
+            ></select>
+            <select
+              class="input"
+              id="studentSelect"
+              style="min-width: 220px"
+            ></select>
+            <button class="btn secondary" id="assignBtn" type="button">
+              Assign to student
+            </button>
+          </div>
+
+          <div id="adminTodoBoard" style="margin-top: 12px"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/admin.js"></script>
+  </body>
+</html>
